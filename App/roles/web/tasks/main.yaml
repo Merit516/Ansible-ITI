@@ -1,0 +1,28 @@
+- name: Installing
+  apt:
+    name: "{{package_name}}"
+    state: "{{package_state}}"
+
+
+- name: Copy template to host
+  template:
+    src: "{{template_name}}"
+    dest: /var/www/html/index.html
+  register: status
+  notify: Restart service 
+
+- name: copy files  to host
+  copy: 
+    src: "{{item}}"  
+    dest: /var/www/html/
+  loop: "{{my_files}}"
+  when: status.changed == true
+  notify: Restart service
+
+
+
+
+
+- name: print of register -> variable  
+  debug:
+    var: status

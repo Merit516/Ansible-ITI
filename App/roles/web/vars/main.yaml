@@ -1,0 +1,8 @@
+package_name: nginx
+package_state: latest
+my_files: 
+  - index.html
+  - script.js
+  - style.css
+template_name: index.html.j2
+template_message: "Welcome ==> From index.html.j2  ==> 1     "
